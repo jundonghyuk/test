@@ -30,6 +30,7 @@ public class MemberService {
     public void update(Request request) throws Exception {
         Member member = memberRepository.findById(request.getId()).get();
         member.setName(request.getName());
+        cnt++;
         if (cnt % 2 != 0) {
             Thread.sleep(30000);
         }
