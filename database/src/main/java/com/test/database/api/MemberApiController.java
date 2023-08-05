@@ -1,10 +1,7 @@
 package com.test.database.api;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class MemberApiController {
@@ -16,14 +13,14 @@ public class MemberApiController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Long> findMember() throws Exception{
-        Long member = memberService.findMember();
+    public ResponseEntity<Long> findMember(@RequestParam Long id) throws Exception{
+        Long member = memberService.findMember(id);
         return ResponseEntity.ok(member);
     }
 
-    @PostMapping("/post/{id}")
-    public ResponseEntity<Long> updateMember(@PathVariable Long id) throws Exception {
-        memberService.update(id);
+    @PostMapping("/post")
+    public ResponseEntity<Long> updateMember(@RequestBody Request request) throws Exception {
+        memberService.update(request);
         return ResponseEntity.ok().build();
     }
 }
