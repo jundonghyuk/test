@@ -17,19 +17,20 @@ public class MemberService {
     }
 
     @Transactional(readOnly = true)
-    public Long findMember(Long id) throws Exception {
+    public MemberDto findMember(Long id) throws Exception {
         Optional<Member> member = memberRepository.findById(id);
         cnt++;
         if (cnt % 2 != 0) {
             Thread.sleep(30000);
         }
-        return member.get().getId();
+        return new MemberDto(member.get().getId(), member.get().getName());
     }
 
     @Transactional
     public void update(Request request) throws Exception {
         Member member = memberRepository.findById(request.getId()).get();
         member.setName(request.getName());
+
         cnt++;
         if (cnt % 2 != 0) {
             Thread.sleep(30000);
