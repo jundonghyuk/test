@@ -13,8 +13,8 @@ public class MemberApiController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<Long> findMember(@RequestParam Long id) throws Exception{
-        Long member = memberService.findMember(id);
+    public ResponseEntity<MemberDto> findMember(@RequestParam Long id) throws Exception{
+        MemberDto member = memberService.findMember(id);
         return ResponseEntity.ok(member);
     }
 
