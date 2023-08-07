@@ -17,7 +17,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    @Transactional(readOnly = true, isolation = Isolation.SERIALIZABLE)
+    @Transactional
     public MemberDto findMember(Long id) throws Exception {
         Optional<Member> member = memberRepository.findById(id);
         cnt++;
