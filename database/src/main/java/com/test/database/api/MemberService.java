@@ -1,6 +1,7 @@
 package com.test.database.api;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
@@ -16,7 +17,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true, isolation = Isolation.SERIALIZABLE)
     public MemberDto findMember(Long id) throws Exception {
         Optional<Member> member = memberRepository.findById(id);
         cnt++;
